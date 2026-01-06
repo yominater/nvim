@@ -14,12 +14,6 @@ return {
     end,
   },
   {
-    'bettervim/yugen.nvim',
-    config = function()
-      -- vim.cmd.colorscheme('yugen')
-    end,
-  },
-  {
     "morhetz/gruvbox",
     config = function()
       vim.cmd.colorscheme('gruvbox')
@@ -32,20 +26,6 @@ return {
            highlight FoldColumn guibg=#000000
          ]]
     end,
-  },
-  {
-    "catppuccin/nvim",
-    -- lazy = false,
-    name = "catppuccin",
-    -- priority = 1000,
-    config = function()
-      --vim.cmd.colorscheme "catppuccin-macchiato"
-      require("catppuccin").setup({
-        custom_highlights = {
-          ["@markup.italic.markdown_inline"] = { italic = true, bold = true, fg = "#93e7ed" }
-        }
-      })
-    end
   },
 
 }
