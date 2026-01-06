@@ -4,14 +4,11 @@ require("config.lazy")
 -- require("mason-lspconfig").setup()
 -- require("lspconfig").marksman.setup {}
 
-vim.opt.number = false
-vim.opt.relativenumber = false
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 
 -- from lazy vim
 local opt = vim.opt
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
--- opt.clipboard = "unnamedplus"
 opt.conceallevel = 2
 opt.confirm = true                                                -- Confirm to save changes before exiting modified buffer
 opt.cursorline = false
@@ -27,6 +24,10 @@ opt.undofile = true
 opt.undolevels = 10000
 opt.number = true          -- Print line number
 opt.relativenumber = false -- Relative line numbers
+opt.spell = false          --spell
+
+-- remove weird spacing things with numbers
+vim.wo.signcolumn = "no"
 
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
@@ -106,3 +107,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- Make background transparent
+-- 2. Make background transparent
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+
+-- Optional: make floating windows and popups transparent too
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })

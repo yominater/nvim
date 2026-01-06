@@ -1,6 +1,6 @@
 return {
   "obsidian-nvim/obsidian.nvim",
-  enabled = true,
+  enabled = false,
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = "markdown",
