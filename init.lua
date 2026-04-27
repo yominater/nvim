@@ -1,5 +1,5 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+--require("config.lazy2")
 -- require("mason").setup()
 -- require("mason-lspconfig").setup()
 -- require("lspconfig").marksman.setup {}
@@ -10,24 +10,34 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 local opt = vim.opt
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 opt.conceallevel = 2
-opt.confirm = true                                                -- Confirm to save changes before exiting modified buffer
+opt.confirm = true      -- Confirm to save changes before exiting modified buffer
 opt.cursorline = false
-opt.ignorecase = true                                             -- Ignore case
-opt.list = true                                                   -- show invisible characters
-opt.scrolloff = 4                                                 -- Lines of context
-opt.sidescrolloff = 8                                             -- Columns of context
-opt.showmode = false                                              -- Dont show mode since we have a statusline
-opt.smartindent = false                                           -- Insert indents automatically
-opt.splitright = true                                             -- Put new windows right of current
-opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]] --define status line
+opt.ignorecase = true   -- Ignore case
+opt.list = true         -- show invisible characters
+opt.scrolloff = 4       -- Lines of context
+opt.sidescrolloff = 8   -- Columns of context
+opt.showmode = false    -- Dont show mode since we have a statusline
+opt.smartindent = false -- Insert indents automatically
+opt.splitright = true   -- Put new windows right of current
+-- opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]] --define status line
+opt.statuscolumn = nil
 opt.undofile = true
 opt.undolevels = 10000
 opt.number = true          -- Print line number
 opt.relativenumber = false -- Relative line numbers
 opt.spell = false          --spell
+opt.wrap = true
+opt.linebreak = true
 
 -- remove weird spacing things with numbers
 vim.wo.signcolumn = "no"
+
+local map = vim.keymap.set
+-- better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
@@ -110,13 +120,13 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 -- Make background transparent
 -- 2. Make background transparent
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
-vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
-vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-
--- Optional: make floating windows and popups transparent too
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "FoldColumn", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+--
+-- -- Optional: make floating windows and popups transparent too
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
