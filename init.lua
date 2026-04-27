@@ -1,5 +1,5 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
---require("config.lazy2")
+require("config.lazy2")
 -- require("mason").setup()
 -- require("mason-lspconfig").setup()
 -- require("lspconfig").marksman.setup {}
