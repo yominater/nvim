@@ -29,6 +29,12 @@ opt.spell = false          --spell
 opt.wrap = true
 opt.linebreak = true
 
+-- tab options
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 0
+opt.expandtab = true
+
 -- remove weird spacing things with numbers
 vim.wo.signcolumn = "no"
 
