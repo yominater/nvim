@@ -29,6 +29,8 @@ opt.spell = false          --spell
 opt.wrap = true
 opt.linebreak = true
 
+vim.cmd.colorscheme("retrobox")
+
 -- tab options
 opt.tabstop = 2
 opt.shiftwidth = 2
